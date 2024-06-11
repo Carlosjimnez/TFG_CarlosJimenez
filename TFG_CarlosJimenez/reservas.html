@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balneario Oasis Web</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img
+          src="img/OasisLogoNueva.png"
+          alt="Logo Balneario Oasis Web"
+          class="logo"
+        />
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Balneario Oasis Web</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="ofertas.html">Ofertas</a></li>
+          <li><a class="a-reservas" href="reservas.html">Reserva</a></li>
+        </ul>
+      </nav>
+      <button class="auth-btn" onclick="location.href='inicioSesion.html';">
+        Inicio Sesion
+      </button>
+    </header>
+    <main>
+      <div class="cargaContenido" id="spinner2">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2 key="reservash2">- Reserva Aqui -</h2>
+        <form id="reservaForm" onsubmit="return validarFormulario(event)">
+          <div class="mb-3">
+            <input
+              name="nombre"
+              type="text"
+              class="form-control"
+              id="nombre"
+              placeholder="Nombre/Name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <select class="form-control" id="productosDropdown" name="producto">
+              <option value="">Seleccionar producto</option>
+              <option value="masaje">Masaje Relajante</option>
+              <option value="circuito">Circuito de Spa</option>
+              <option value="terapia">Terapia de Barro</option>
+              <option value="sauna">Sauna Finlandesa</option>
+              <option value="piscina">Piscina Termal</option>
+              <option value="tratamiento">Tratamiento Facial</option>
+              <option value="aromaterapia">Aromaterapia</option>
+              <option value="talasoterapia">Talasoterapia</option>
+              <option value="hidroterapia">Hidroterapia</option>
+              <option value="instalaciones">Instalaciones del Balneario</option>
+              <option value="muscular">Terapia Muscular</option>
+              <option value="baño">Baño Turcor</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <input
+              name="fechaReserva"
+              type="date"
+              class="form-control"
+              id="fecha"
+              placeholder="Fecha de reserva/Reservation date"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              name="hora"
+              type="time"
+              class="form-control"
+              id="hora"
+              placeholder="Hora de reserva/Reservation time"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              name="contacto"
+              type="tel"
+              class="form-control"
+              id="contacto"
+              placeholder="Número de contacto/Contact number"
+              pattern="[0-9]{9}"
+              title="Debe ser un número de contacto válido de 9 dígitos"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              name="nombreTarjeta"
+              type="text"
+              class="form-control"
+              id="nombreTarjeta"
+              placeholder="Nombre tarjeta de crédito/Name credit card"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              name="numTarjeta"
+              type="text"
+              class="form-control"
+              id="numTarjeta"
+              placeholder="Número de tarjeta de crédito/Credit card Number"
+              pattern="[0-9]{16}"
+              title="Debe ser un número de tarjeta de crédito válido de 16 dígitos"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <input
+              name="fechaTarjeta"
+              type="month"
+              class="form-control"
+              id="fechaTarjeta"
+              placeholder="Fecha expedición/Expiration date"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              name="cvc"
+              type="password"
+              class="form-control"
+              id="cvc"
+              pattern="[0-9]{3,4}"
+              title="El CVC debe contener 3 dígitos numéricos"
+              placeholder="CVC de la tarjeta/Card security code"
+              required
+            />
+          </div>
+          <button
+            id="submitReserva"
+            type="submit"
+            class="btn btn-primary"
+            key="envreserva"
+          >
+            Enviar Reserva
+          </button>
+          <div
+            class="spinner-border text-primary d-none"
+            role="status"
+            id="spinner"
+          ></div>
+        </form>
+
+        <div class="progress mt-4">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <div class="modal" id="confirmacionModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" key="confirm">Confirmar Reserva</h5>
+            </div>
+            <div class="modal-body" key="confirmFrase">
+              ¿Estás seguro de que deseas enviar la reserva?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="btnCancelarReserva"
+                data-bs-dismiss="modal"
+                key="cancelar"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnConfirmarReserva"
+                key="confirm2"
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer itemscope itemtype="http://schema.org/LocalBusiness">
+      <div class="footer-content">
+        <p key="contactanos">
+          Contactanos:
+          <a href="mailto:liokosl@gmail.com" itemprop="email"
+            >balnearioOasisWeb@gmail.com</a
+          >
+        </p>
+        <p key="direccion">
+          Dirección:
+          <span
+            itemprop="address"
+            itemscope
+            itemtype="http://schema.org/PostalAddress"
+            >C/Real 34, Barcelona</span
+          >
+        </p>
+        <p key="telefono">
+          Teléfono: <span itemprop="telephone">+34 678444237</span>
+        </p>
+        <img src="img/instagram.png" alt="instagram" />
+        <img src="img/face.png" alt="facebook" />
+        <img src="img/x.png" alt="x" />
+      </div>
+    </footer>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+  <script src="js/reservas.js"></script>
+  <script src="js/cargaPagina.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</html>

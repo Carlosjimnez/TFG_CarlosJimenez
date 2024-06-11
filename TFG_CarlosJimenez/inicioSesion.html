@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagina de Inicio de Oasis</title>
+    <link rel="stylesheet" href="css/styleInicioSesion.css" />
+    <script src="./js/services/colores.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo-container">
+        <img
+          src="img/OasisLogoNueva.png"
+          alt="Logo Balneario Oasis Web"
+          class="logo"
+        />
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Balneario Oasis Web</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="ofertas.html">Ofertas</a></li>
+          <li><a class="a-reservas" href="reservas.html">Reserva</a></li>
+        </ul>
+      </nav>
+
+      <button class="auth-btn" onclick="location.href='inicioSesion.html';">
+        Inicio Sesion
+      </button>
+    </header>
+    <main>
+      <div class="container">
+        <div class="container-form">
+          <form class="sign-in" id="inicioForm">
+            <h2>Iniciar Sesión</h2>
+
+            <span>Use su correo y contraseña</span>
+            <div class="container-input">
+              <input type="text" placeholder="Email" name="emailInicio" />
+            </div>
+            <div class="container-input">
+              <input
+                type="password"
+                placeholder="Password"
+                name="contrasenaInicio"
+              />
+            </div>
+            <a href="#">¿Olvidaste tu contraseña?</a>
+            <button class="button">INICIAR SESIÓN</button>
+          </form>
+        </div>
+        <button onclick="realizarPeticion(2)" class="button">
+          REALIZAR PRUEBA
+        </button>
+        <div class="container-form">
+          <form class="sign-up" id="registroForm">
+            <h2>Registrarse</h2>
+
+            <div class="container-input">
+              <input type="text" placeholder="Nombre" name="nombre" required />
+            </div>
+            <div class="container-input">
+              <input
+                type="text"
+                placeholder="Apellido"
+                name="apellido"
+                required
+              />
+            </div>
+            <div class="container-input">
+              <input
+                name="contacto"
+                type="tel"
+                class="form-control"
+                id="contacto"
+                placeholder="Número de contacto/Contact number"
+                pattern="[67]\d{8}"
+                title="Debe ser un número de contacto válido de 9 dígitos"
+                required
+              />
+            </div>
+            <div class="container-input">
+              <input name="email" type="text" placeholder="Email" required />
+            </div>
+            <div class="container-input">
+              <input
+                type="password"
+                placeholder="Password"
+                name="contrasena"
+                pattern="(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}"
+                title="Debe tener una longitud mínima de 8, contener mayúsculas y números"
+                required
+              />
+            </div>
+            <div class="container-input">
+              <input
+                type="text"
+                placeholder="Nombre Tarjeta"
+                name="nombreTarjeta"
+                required
+              />
+            </div>
+            <div class="container-input">
+              <input
+                name="numTarjeta"
+                type="text"
+                class="form-control"
+                id="numTarjeta"
+                placeholder="Número de tarjeta de crédito"
+                pattern="[0-9]{16}"
+                title="Debe ser un número de tarjeta de crédito válido de 16 dígitos"
+                required
+              />
+            </div>
+            <div class="container-input">
+              <input
+                name="fechaTarjeta"
+                type="month"
+                class="form-control"
+                id="fechaTarjeta"
+                placeholder="Fecha expedición/Expiration date"
+                required
+              />
+            </div>
+            <button class="button">REGISTRARSE</button>
+          </form>
+        </div>
+
+        <div class="container-welcome">
+          <div class="welcome-sign-up welcome">
+            <h3>¡Bienvenido!</h3>
+            <p>
+              Ingrese sus datos personales para usar todas las funciones del
+              sitio
+            </p>
+            <button class="button" id="btn-sign-up">Registrarse</button>
+          </div>
+          <div class="welcome-sign-in welcome">
+            <h3>¡Hola!</h3>
+            <p>
+              Regístrese con sus datos personales para usar todas las funciones
+              del sitio
+            </p>
+            <button class="button" id="btn-sign-in">Iniciar Sesión</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer itemscope itemtype="http://schema.org/LocalBusiness">
+      <div class="footer-content">
+        <p key="contactanos">
+          Contactanos:
+          <a href="mailto:liokosl@gmail.com" itemprop="email"
+            >balnearioOasisWeb@gmail.com</a
+          >
+        </p>
+        <p key="direccion">
+          Dirección:
+          <span
+            itemprop="address"
+            itemscope
+            itemtype="http://schema.org/PostalAddress"
+            >C/Real 34, Barcelona</span
+          >
+        </p>
+        <p key="telefono">
+          Teléfono: <span itemprop="telephone">+34 678444237</span>
+        </p>
+        <img src="img/instagram.png" alt="instagram" />
+        <img src="img/face.png" alt="facebook" />
+        <img src="img/x.png" alt="x" />
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="./js/inicio.js"></script>
+  </body>
+</html>
