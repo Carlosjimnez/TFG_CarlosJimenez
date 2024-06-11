@@ -12,14 +12,14 @@ const confirmacionModal = new bootstrap.Modal(
 );
 
 // Agregar listener para el evento submit del formulario
-formulario.addEventListener("submit", function (event) {
+/*formulario.addEventListener("submit", function (event) {
   // Prevenir el envío del formulario
   event.preventDefault();
   // Mostrar el spinner
   spinner.classList.remove("d-none");
   // Mostrar el modal de confirmación
   confirmacionModal.show();
-});
+});*/
 
 // Agregar listener para el evento click del botón de confirmar reserva en el modal
 document

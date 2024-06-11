@@ -23,11 +23,14 @@ inputs.forEach(function (input) {
   input.addEventListener("input", actualizarBarraProgreso);
 });
 
-function validarFormulario() {
+function validarFormulario(event) {
+  event.preventDefault();
+
   const nombre = document.querySelector('input[name="nombre"]').value.trim();
   const producto = document
     .querySelector('select[name="producto"]')
     .value.trim();
+
   const fechaReserva = document
     .querySelector('input[name="fechaReserva"]')
     .value.trim();
@@ -58,6 +61,7 @@ function validarFormulario() {
   if (!producto) {
     errores += "Seleccione un producto \n";
   }
+
   if (isNaN(fechaReserva) && !validarFechaReserva(fechaReserva)) {
     // 2022-12
     errores += "La fecha de reserva es posterior a la fecha actual \n";
