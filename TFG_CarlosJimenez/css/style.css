@@ -12,53 +12,28 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  background: url("./../img/imagenNnav.jpg") no-repeat center center/cover;
   align-items: center;
-  background-color: #ffffff;
+  background: url("./../img/imagenNnav.jpg") no-repeat center center/cover;
   padding: 10px 20px;
-}
-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  filter: blur(5px);
-  z-index: -1;
+  position: relative; /* Añadido para contener el background */
+  background-color: #ffffff;
 }
 
 .logo {
   width: 100px;
 }
 
-nav {
-  flex-grow: 1;
+.navbar-nav {
+  justify-content: flex-end; /* Alineación de los elementos */
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
+.navbar-nav .nav-item {
+  margin-left: 10px; /* Espacio entre los elementos */
 }
 
-nav ul li a {
-  color: #000000;
-  text-decoration: none;
-  font-weight: bold;
-}
-.a-reservas {
-  color: rgb(12, 93, 255);
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 10px;
-  text-decoration: none;
+.navbar-toggler {
+  border: none;
+  background: none;
 }
 
 .auth-btn {
@@ -137,6 +112,7 @@ footer {
   align-items: center;
   justify-content: center;
 }
+
 .footer-content a {
   color: #000000;
   text-decoration: none;
@@ -234,15 +210,37 @@ footer {
   height: auto;
   border-radius: 10px;
 }
-.container h2 {
-  text-align: center;
+
+.cargaContenido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
+
 .container {
-  position: relative;
-  max-width: 550px;
-  max-height: 568px;
-  margin-top: 20px;
-  margin-bottom: 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 .cargaContenido {
   display: flex;
@@ -295,7 +293,7 @@ footer {
   height: 100%;
 }
 .ofertas {
-  margin-bottom: 2300px;
+  margin-bottom: 50px;
 }
 .ofertas .card {
   text-align: center;
