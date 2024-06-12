@@ -52,9 +52,9 @@ try {
     $status = "Error";
 }
 
-$response = ["status" => $status, "data" => $data ];
+//$response = ["status" => $status, "data" => $data ];
 
-echo json_encode($response);
+//echo json_encode($response);
 
 // ------- MODELO ----------
 function crearCliente($conn, $nombre, $apellido, $numtelef, $email, $contrasena, $nombretar, $numerotar, $fechatar) {

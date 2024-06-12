@@ -27,7 +27,7 @@ function altaCliente(json) {
       if (!response.ok) {
         throw new Error("Network response was not ok " + response.statusText);
       }
-      return response.json(); // Cambiar text() a json() para obtener directamente el JSON
+      return response.json();
     })
     .then((data) => {
       console.log("Response JSON:", data);
