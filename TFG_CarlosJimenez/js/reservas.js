@@ -104,6 +104,7 @@ function validarFormulario(event) {
 }
 
 function validarFechaTarjeta(fecha) {
+  console.log("validarFecha", fecha);
   const hoy = new Date();
   const [ano, mes] = fecha.split("-").map(Number);
   const expiracion = new Date(ano, mes - 1);

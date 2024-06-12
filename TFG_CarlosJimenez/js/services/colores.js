@@ -11,7 +11,7 @@
 //     .catch((e) => console.error("Fetch error:", e));
 // }
 function realizarPeticion(num) {
-  const url = `http://localhost/TFG_Carlos/backend/index.php?numero=${num}`;
+  const url = `http://localhost/TFG_Carlos/backend/conexion.php`;
 
   fetch(url)
     .then((response) => {
@@ -29,4 +29,4 @@ function realizarPeticion(num) {
 }
 
 // Llamar a la función con un número de ejemplo
-realizarPeticion(42);
+// realizarPeticion();

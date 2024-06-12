@@ -8,10 +8,34 @@ document.getElementById("registroForm").addEventListener("submit", (ev) => {
     alert("Todos los datos son válidos");
     const body = generarBody(values);
     console.log("ESTE ES EL BODY DEL ALTA", body);
+
+    // REALIZAMOS LLAMADA
+
+    altaCliente(body);
+
     //GENERAR MODAL CONFIRMACION
   } else {
   }
 });
+
+function altaCliente(json) {
+  fetch("http://localhost/TFG_Carlos/backend/controllers/clientes.php", {
+    method: "post",
+    body: JSON.stringify({ body: json }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      return response.json(); // Cambiar text() a json() para obtener directamente el JSON
+    })
+    .then((data) => {
+      console.log("Response JSON:", data);
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+    });
+}
 
 document.getElementById("inicioForm").addEventListener("submit", (ev) => {
   ev.preventDefault();
