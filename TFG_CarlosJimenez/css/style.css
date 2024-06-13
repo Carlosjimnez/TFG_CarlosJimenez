@@ -15,7 +15,7 @@ header {
   align-items: center;
   background: url("./../img/imagenNnav.jpg") no-repeat center center/cover;
   padding: 10px 20px;
-  position: relative; /* Añadido para contener el background */
+  position: relative;
   background-color: #ffffff;
 }
 
@@ -24,11 +24,11 @@ header {
 }
 
 .navbar-nav {
-  justify-content: flex-end; /* Alineación de los elementos */
+  justify-content: flex-end;
 }
 
 .navbar-nav .nav-item {
-  margin-left: 10px; /* Espacio entre los elementos */
+  margin-left: 10px;
 }
 
 .navbar-toggler {
@@ -414,4 +414,10 @@ footer {
 
 .container-datos p span {
   color: #555555;
+}
+.sign-up,
+.sign-in {
+  margin-top: 20px;
+  color: #000000;
+  text-align: center;
 }
