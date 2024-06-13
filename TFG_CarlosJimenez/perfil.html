@@ -37,7 +37,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#inicio">Balneario Oasis Web</a>
+                <a class="nav-link" href="index.html">Balneario Oasis Web</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="productos.html">Productos</a>
@@ -48,6 +48,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="ofertas.html">Ofertas</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reservas.html">Reservas</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -57,14 +60,83 @@
       </button>
     </header>
     <main>
-      <section class="hero">
-        <h1>BALNEARIO OASIS WEB</h1>
-        <p>SALUD, NATURALEZA, BELLEZA Y BIENESTAR.</p>
-        <button class="reserva-btn" onclick="location.href='reservas.html';">
-          Reserva Ya!
-        </button>
-      </section>
+      <div class="container-form-perfil">
+        <form class="sign-up" id="perfilForm">
+          <h2>Perfil</h2>
+
+          <div class="container-input">
+            <input type="text" placeholder="Nombre" name="nombre" required />
+          </div>
+          <div class="container-input">
+            <input
+              type="text"
+              placeholder="Apellido"
+              name="apellido"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <input
+              name="contacto"
+              type="tel"
+              class="form-control"
+              id="contacto"
+              placeholder="Número de contacto/Contact number"
+              pattern="[67]\d{8}"
+              title="Debe ser un número de contacto válido de 9 dígitos"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <input name="email" type="text" placeholder="Email" required />
+          </div>
+          <div class="container-input">
+            <input
+              type="password"
+              placeholder="Password"
+              name="contrasena"
+              pattern="(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}"
+              title="Debe tener una longitud mínima de 8, contener mayúsculas y números"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <input
+              type="text"
+              placeholder="Nombre Tarjeta"
+              name="nombreTarjeta"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <input
+              name="numTarjeta"
+              type="text"
+              class="form-control"
+              id="numTarjeta"
+              placeholder="Número de tarjeta de crédito"
+              pattern="[0-9]{16}"
+              title="Debe ser un número de tarjeta de crédito válido de 16 dígitos"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <input
+              name="fechaTarjeta"
+              type="month"
+              class="form-control"
+              id="fechaTarjeta"
+              placeholder="Fecha expedición/Expiration date"
+              required
+            />
+          </div>
+          <button class="button">Actualizar Perfil</button>
+          <br />
+          <button class="button">Eliminar Perfil</button>
+        </form>
+      </div>
     </main>
+
     <footer itemscope itemtype="http://schema.org/LocalBusiness">
       <div class="footer-content">
         <p key="contactanos">
@@ -96,5 +168,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/inicio.js"></script>
   </body>
 </html>

@@ -12,53 +12,28 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  background: url("./../img/imagenNnav.jpg") no-repeat center center/cover;
   align-items: center;
-  background-color: #ffffff;
+  background: url("./../img/imagenNnav.jpg") no-repeat center center/cover;
   padding: 10px 20px;
-}
-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  filter: blur(5px);
-  z-index: -1;
+  position: relative;
+  background-color: #ffffff;
 }
 
 .logo {
   width: 100px;
 }
 
-nav {
-  flex-grow: 1;
+.navbar-nav {
+  justify-content: flex-end;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
+.navbar-nav .nav-item {
+  margin-left: 10px;
 }
 
-nav ul li a {
-  color: #000000;
-  text-decoration: none;
-  font-weight: bold;
-}
-.a-reservas {
-  color: rgb(12, 93, 255);
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 10px;
-  text-decoration: none;
+.navbar-toggler {
+  border: none;
+  background: none;
 }
 
 .auth-btn {
@@ -128,8 +103,6 @@ footer {
   color: #000000;
   text-align: right;
   padding: 20px;
-  position: static;
-  bottom: 0;
   left: 0;
   width: 100%;
 }
@@ -139,6 +112,7 @@ footer {
   align-items: center;
   justify-content: center;
 }
+
 .footer-content a {
   color: #000000;
   text-decoration: none;
@@ -236,15 +210,37 @@ footer {
   height: auto;
   border-radius: 10px;
 }
-.container h2 {
-  text-align: center;
+
+.cargaContenido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
+
 .container {
-  position: relative;
-  max-width: 550px;
-  max-height: 568px;
-  margin-top: 20px;
-  margin-bottom: 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 .cargaContenido {
   display: flex;
@@ -295,4 +291,133 @@ footer {
 
 .productos .card {
   height: 100%;
+}
+.ofertas {
+  margin-bottom: 50px;
+}
+.ofertas .card {
+  text-align: center;
+}
+
+.btn-mas-informacion {
+  display: block;
+  margin: 20px auto 0 auto;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.btn-mas-informacion:hover {
+  background-color: #0056b3;
+}
+
+.container-form-perfil {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-form-perfil h2 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.container-input {
+  margin-bottom: 15px;
+}
+
+.container-input input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 0 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.container-input input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.button {
+  display: block;
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 10px 0 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button:last-child {
+  background-color: #dc3545;
+}
+
+.button:last-child:hover {
+  background-color: #c82333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.container-form-perfil {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.container-perfil {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.container-datos {
+  margin-top: 20px;
+}
+
+.container-datos p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.container-datos p strong {
+  font-weight: bold;
+}
+
+.container-datos p span {
+  color: #555555;
+}
+.sign-up,
+.sign-in {
+  margin-top: 20px;
+  color: #000000;
+  text-align: center;
 }

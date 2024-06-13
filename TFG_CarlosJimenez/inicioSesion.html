@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagina de Inicio de Oasis</title>
-    <link rel="stylesheet" href="css/styleInicioSesion.css" />
-    <script src="./js/services/colores.js"></script>
+    <title>Balneario Oasis Web.</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-
   <body>
     <header>
       <div class="logo-container">
@@ -17,17 +21,40 @@
           class="logo"
         />
       </div>
-
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Balneario Oasis Web</a></li>
-          <li><a href="productos.html">Productos</a></li>
-          <li><a href="nosotros.html">Nosotros</a></li>
-          <li><a href="ofertas.html">Ofertas</a></li>
-          <li><a class="a-reservas" href="reservas.html">Reserva</a></li>
-        </ul>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Balneario Oasis Web</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="productos.html">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="nosotros.html">Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="ofertas.html">Ofertas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reservas.html">Reservas</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
-
       <button class="auth-btn" onclick="location.href='inicioSesion.html';">
         Inicio Sesion
       </button>
@@ -37,7 +64,6 @@
         <div class="container-form">
           <form class="sign-in" id="inicioForm">
             <h2>Iniciar Sesión</h2>
-
             <span>Use su correo y contraseña</span>
             <div class="container-input">
               <input type="text" placeholder="Email" name="emailInicio" />
@@ -49,7 +75,6 @@
                 name="contrasenaInicio"
               />
             </div>
-            <a href="#">¿Olvidaste tu contraseña?</a>
             <button class="button">INICIAR SESIÓN</button>
           </form>
         </div>
@@ -59,7 +84,6 @@
         <div class="container-form">
           <form class="sign-up" id="registroForm">
             <h2>Registrarse</h2>
-
             <div class="container-input">
               <input type="text" placeholder="Nombre" name="nombre" required />
             </div>
@@ -129,28 +153,8 @@
             <button class="button">REGISTRARSE</button>
           </form>
         </div>
-
-        <div class="container-welcome">
-          <div class="welcome-sign-up welcome">
-            <h3>¡Bienvenido!</h3>
-            <p>
-              Ingrese sus datos personales para usar todas las funciones del
-              sitio
-            </p>
-            <button class="button" id="btn-sign-up">Registrarse</button>
-          </div>
-          <div class="welcome-sign-in welcome">
-            <h3>¡Hola!</h3>
-            <p>
-              Regístrese con sus datos personales para usar todas las funciones
-              del sitio
-            </p>
-            <button class="button" id="btn-sign-in">Iniciar Sesión</button>
-          </div>
-        </div>
       </div>
     </main>
-
     <footer itemscope itemtype="http://schema.org/LocalBusiness">
       <div class="footer-content">
         <p key="contactanos">
@@ -176,15 +180,13 @@
         <img src="img/x.png" alt="x" />
       </div>
     </footer>
-    <script src="js/script.js"></script>
     <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
     ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="./js/inicio.js"></script>
   </body>
 </html>
