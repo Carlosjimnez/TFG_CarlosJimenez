@@ -1,27 +1,13 @@
 <?php
 // CONEXION
-// require('./../conexion.php');
-
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json");
-
-$host = '127.0.0.1';
-$dbname = 'oasis';
-$username = 'root';
-$conn = '';
-
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, '');
-} catch (PDOException $error) {
-    print "Error conexion base de datos: ";
-    die();
-}
+require('./../conexion.php');
 
 // CONTROLLER (ANALIZAR LA PETICION, LOS PARAMETROS Y LLAMAR A UN SERVICIO U OTRO)
 $email = $_GET['email'] ?? null;
 $contrasena =  $_GET['contrasena'] ?? null;
 $id_cliente =  $_GET['id_cliente'] ?? null;
 
+$contents = json_decode(file_get_contents("php://input"), true);
 $data = '';
 
 try {
@@ -29,21 +15,9 @@ try {
         $data = datosCliente($conn, $email, $contrasena);
     } else if($id_cliente) {
         $data = datosClientePorId($conn, $id_cliente);
+    } else if($contents['datos']) {
+        $data = crearCliente($conn, $contents['datos']);
     }
-
-    var_dump($_POST['body']);
-
-    /*crearCliente(
-        $conn, 
-        $_POST['nombre'],
-        $_POST['apellido'],
-        $_POST['contacto'], 
-        $_POST['email'], 
-        $_POST['fechaTarjeta'], 
-        $_POST['nombreTarjeta'], 
-        $_POST['numTarjeta'], 
-        $_POST['fechaTarjeta']
-    );*/
     
     $status = 'succes';
      
@@ -57,23 +31,26 @@ $response = ["status" => $status, "data" => $data ];
 echo json_encode($response);
 
 // ------- MODELO ----------
-function crearCliente($conn, $nombre, $apellido, $numtelef, $email, $contrasena, $nombretar, $numerotar, $fechatar) {
+function crearCliente($conn, $datos) {
+    $datos['numTarjeta'] = 678567345;
+    $datos['fechaTarjeta'] = '2026-10-11';
     try {
-        $stmt = $conn->prepare("INSERT INTO clientes VALUES ('',:nombre,:apellido,:numtelef,:email,:contrasena,:nombretar,:numerotar,:fechatar)");
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':apellido', $apellido);
-        $stmt->bindParam(':numtelef', $numtelef);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':contrasena', $contrasena);
-        $stmt->bindParam(':nombretar', $nombretar);
-        $stmt->bindParam(':numerotar', $numerotar);
-        $stmt->bindParam(':fechatar', $fechatar);
+        $stmt = $conn->prepare("INSERT INTO clientes VALUES (6,:nombre,:apellido,:numtelef,:email,:contrasena,:nombretar,:numerotar,:fechatar)");
+        $stmt->bindParam(':nombre', $datos['nombre']);
+        $stmt->bindParam(':apellido', $datos['apellido']);
+        $stmt->bindParam(':numtelef', $datos['contacto']);
+        $stmt->bindParam(':email', $datos['email']);
+        $stmt->bindParam(':contrasena', $datos['contrasena']);
+        $stmt->bindParam(':nombretar', $datos['nombreTarjeta']);
+        $stmt->bindParam(':numerotar', $datos['numTarjeta']);
+        $stmt->bindParam(':fechatar', $datos['fechaTarjeta']);
     
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         return json_encode($data);
     } catch (PDOException $error) {
+        echo $error->getMessage();
         return 'Error: ' . $error->getMessage();
     }
 }

@@ -3,15 +3,15 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$numero = $_GET['numero'] ?? null;
+$datos = json_decode(file_get_contents("php://input"), true);
 
-if ($numero) {
-    $response = ['status' => 'success', 'message' => 'Número recibido', 'numero' => $numero];
+if ($datos && isset($datos['datos'])) {
+    $body = $datos['datos'];
+    $response = ['status' => 'success', 'message' => 'Datos recibidos correctamente', 'body' => $body];
 } else {
-    $response = ['status' => 'error', 'message' => 'No se recibió ningún número'];
+    $response = ['status' => 'error', 'message' => 'No se recibieron datos'];
 }
 
 echo json_encode($response);
 
-/* http://localhost/TFG_Carlos/backend/index.php * */
 ?>

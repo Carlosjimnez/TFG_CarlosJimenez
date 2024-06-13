@@ -10,10 +10,19 @@
 //     .then((data) => console.log(data))
 //     .catch((e) => console.error("Fetch error:", e));
 // }
-function realizarPeticion(num) {
-  const url = `http://localhost/TFG_Carlos/backend/conexion.php`;
+function realizarPeticion() {
+  const url = `http://localhost/TFG_Carlos/backend/index.php`;
 
-  fetch(url)
+  const json = {
+    name: 'David',
+    age: 22,
+    colors: ['red', 'green', 'blue']
+  }
+
+  fetch("http://localhost/TFG_CarlosJimenez/backend/index.php", {
+    method: "post",
+    body: JSON.stringify({json})
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok " + response.statusText);

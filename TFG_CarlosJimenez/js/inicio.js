@@ -21,7 +21,7 @@ document.getElementById("registroForm").addEventListener("submit", (ev) => {
 function altaCliente(json) {
   fetch("http://localhost/TFG_Carlos/backend/controllers/clientes.php", {
     method: "post",
-    body: JSON.stringify({ body: json }),
+    body: JSON.stringify({datos: json})
   })
     .then((response) => {
       if (!response.ok) {
