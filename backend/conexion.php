@@ -4,7 +4,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
 $host = '127.0.0.1';
-$dbname = 'balneario_oasis';
+$dbname = 'oasis';
 $username = 'root';
 $conn = '';
 

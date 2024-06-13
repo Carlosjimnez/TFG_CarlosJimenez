@@ -1,3 +1,22 @@
+window.addEventListener("load", () => {
+  //Comprobamos si existe datos en el session storage
+  if (localStorage.getItem("datos_cliente")) {
+    console.log(
+      "Existen datos del cliente",
+      JSON.parse(localStorage.getItem("datos_cliente"))
+    );
+    cambiarBoton();
+  }
+});
+
+function cambiarBoton() {
+  const buttonInicio = document.getElementById("buttonInicioSesion");
+  const buttonAdmin = document.getElementById("buttonAdminPerfil");
+
+  buttonInicio.style.display = "none";
+  buttonAdmin.style.display = "block";
+}
+
 document.getElementById("registroForm").addEventListener("submit", (ev) => {
   ev.preventDefault();
   console.log("SE QUIERE DAR DE ALTA UN USUARIO");
@@ -9,10 +28,12 @@ document.getElementById("registroForm").addEventListener("submit", (ev) => {
     const body = generarBody(values);
     console.log("ESTE ES EL BODY DEL ALTA", body);
 
-    // REALIZAMOS LLAMADA
-
+    // REALIZAMOS PETICION AL SERVICIO
     altaCliente(body);
 
+    //GUARDAMOS LOS DATOS EN EL localStorage
+
+    localStorage.setItem("datos_cliente", JSON.stringify(body));
     //GENERAR MODAL CONFIRMACION
   } else {
   }
@@ -21,7 +42,7 @@ document.getElementById("registroForm").addEventListener("submit", (ev) => {
 function altaCliente(json) {
   fetch("http://localhost/TFG_Carlos/backend/controllers/clientes.php", {
     method: "post",
-    body: JSON.stringify({datos: json})
+    body: JSON.stringify({ datos: json }),
   })
     .then((response) => {
       if (!response.ok) {

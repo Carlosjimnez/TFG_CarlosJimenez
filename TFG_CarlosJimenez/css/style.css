@@ -19,6 +19,10 @@ header {
   background-color: #ffffff;
 }
 
+#buttonAdminPerfil {
+  display: "none";
+}
+
 .logo {
   width: 100px;
 }

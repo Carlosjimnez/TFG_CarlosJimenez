@@ -14,7 +14,7 @@ try {
     if($email && $contrasena) {
         $data = datosCliente($conn, $email, $contrasena);
     } else if($id_cliente) {
-        $data = datosClientePorId($conn, $id_cliente);
+        $data = borrarClientePorId($conn, $id_cliente);
     } else if($contents['datos']) {
         $data = crearCliente($conn, $contents['datos']);
     }
@@ -26,16 +26,16 @@ try {
     $status = "Error";
 }
 
-//$response = ["status" => $status, "data" => $data ];
+$response = ["status" => $status, "data" => $data ];
 
-//echo json_encode($response);
+echo json_encode($response);
 
 // ------- MODELO ----------
 function crearCliente($conn, $datos) {
-    $datos['numTarjeta'] = 678567345;
-    $datos['fechaTarjeta'] = '2026-10-11';
+    // $datos['numTarjeta'] = 678567345;
+    // $datos['fechaTarjeta'] = '2026-10-11';
     try {
-        $stmt = $conn->prepare("INSERT INTO clientes VALUES (6,:nombre,:apellido,:numtelef,:email,:contrasena,:nombretar,:numerotar,:fechatar)");
+        $stmt = $conn->prepare("INSERT INTO clientes VALUES ('',:nombre,:apellido,:numtelef,:email,:contrasena,:nombretar,:numerotar,:fechatar)");
         $stmt->bindParam(':nombre', $datos['nombre']);
         $stmt->bindParam(':apellido', $datos['apellido']);
         $stmt->bindParam(':numtelef', $datos['contacto']);
@@ -69,9 +69,9 @@ function datosCliente($conn, $email, $contrasena) {
     }
 }
 
-function datosClientePorId($conn, $id_cliente) {
+function borrarClientePorId($conn, $id_cliente) {
     try {
-        $stmt = $conn->prepare("SELECT * FROM clientes WHERE id_cliente = :id_cliente");
+        $stmt = $conn->prepare("DELETE FROM clientes WHERE id_cliente = :id_cliente");
         $stmt->bindParam(':id_cliente', $id_cliente);
     
         $stmt->execute();

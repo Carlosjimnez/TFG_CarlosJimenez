@@ -11,6 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script defer src="./js/perfil.js"></script>
   </head>
   <body>
     <header>
@@ -92,7 +93,7 @@
           </div>
           <div class="container-input">
             <input
-              type="password"
+              type="text"
               placeholder="Password"
               name="contrasena"
               pattern="(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}"
@@ -130,10 +131,10 @@
               required
             />
           </div>
-          <button class="button">Actualizar Perfil</button>
-          <br />
-          <button class="button">Eliminar Perfil</button>
         </form>
+        <button id="actualizarPerfil" class="button">Actualizar Perfil</button>
+        <br />
+        <button id="eliminarPerfil" class="button">Eliminar Perfil</button>
       </div>
     </main>
 
@@ -168,6 +169,5 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./js/inicio.js"></script>
   </body>
 </html>
