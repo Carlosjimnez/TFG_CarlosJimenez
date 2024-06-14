@@ -1,48 +1,67 @@
-window.addEventListener("load", () => {
-  //Comprobamos si existe datos en el session storage
-  if (localStorage.getItem("datos_cliente")) {
-    console.log(
-      "Existen datos del cliente",
-      JSON.parse(localStorage.getItem("datos_cliente"))
-    );
-    cambiarBoton();
+window.addEventListener("load", iniciar);
+
+async function iniciar() {
+  const json = localStorage.getItem("datos_cliente");
+  if (json) {
+    try {
+      const datos = JSON.parse(json);
+      datosCliente(datos.email, datos.contrasena);
+      cambiarBoton(true);
+    } catch (e) {
+      console.log("Error: ", e);
+    }
   }
-});
+}
 
 function cambiarBoton() {
   const buttonInicio = document.getElementById("buttonInicioSesion");
   const buttonAdmin = document.getElementById("buttonAdminPerfil");
-
   buttonInicio.style.display = "none";
   buttonAdmin.style.display = "block";
 }
 
-document.getElementById("registroForm").addEventListener("submit", (ev) => {
-  ev.preventDefault();
-  console.log("SE QUIERE DAR DE ALTA UN USUARIO");
-  const values = document.querySelectorAll("#registroForm [name]");
-  console.log(values);
-  if (validarDatos(values)) {
-    // GENERAR EL TRY CATCH
-    alert("Todos los datos son válidos");
-    const body = generarBody(values);
-    console.log("ESTE ES EL BODY DEL ALTA", body);
+document
+  .getElementById("registroForm")
+  .addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const values = document.querySelectorAll("#registroForm [name]");
+    if (validarDatos(values)) {
+      // GENERAR EL TRY CATCH
 
-    // REALIZAMOS PETICION AL SERVICIO
-    altaCliente(body);
+      alert("Todos los datos son válidos");
+      const body = generarBody(values);
+      // REALIZAMOS PETICION AL SERVICIO
+      altaCliente(body);
+      //GUARDAMOS LOS DATOS EN EL localStorage
+      localStorage.setItem("datos_cliente", JSON.stringify(body));
+      //GENERAR MODAL CONFIRMACION
+    } else {
+    }
+  });
 
-    //GUARDAMOS LOS DATOS EN EL localStorage
-
-    localStorage.setItem("datos_cliente", JSON.stringify(body));
-    //GENERAR MODAL CONFIRMACION
-  } else {
-  }
-});
+function datosCliente(email, contrasena) {
+  fetch(
+    `http://localhost/TFG_Carlos/backend/controllers/clientes.php?email=${email}&contrasena=${contrasena}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Response JSON:", data);
+      localStorage.setItem("datos_cliente", data.data);
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+    });
+}
 
 function altaCliente(json) {
   fetch("http://localhost/TFG_Carlos/backend/controllers/clientes.php", {
     method: "post",
-    body: JSON.stringify({ datos: json }),
+    body: JSON.stringify({ datos_crear: json }),
   })
     .then((response) => {
       if (!response.ok) {
@@ -52,6 +71,7 @@ function altaCliente(json) {
     })
     .then((data) => {
       console.log("Response JSON:", data);
+      location.reload();
     })
     .catch((error) => {
       console.error("Fetch error:", error);
@@ -87,9 +107,7 @@ function validarDatos(values) {
   const numTarjeta = document
     .querySelector('input[name="numTarjeta"]')
     .value.trim();
-  const fechaTarjeta = document.querySelector(
-    'input[name="fechaTarjeta"]'
-  ).value;
+  let fechaTarjeta = document.querySelector('input[name="fechaTarjeta"]').value;
 
   let errores = "";
   let valido = true;
@@ -121,6 +139,7 @@ function validarDatos(values) {
   if (!/^\d{16}$/.test(numTarjeta)) {
     errores += "El número de la tarjeta no es el correcto \n";
   }
+
   if (isNaN(fechaTarjeta) && !validarFechaTarjeta(fechaTarjeta)) {
     // 2022-12
     errores +=
@@ -138,7 +157,11 @@ function validarDatos(values) {
 function generarBody(values) {
   const body = {};
   values.forEach((el) => {
-    body[el.name] = el.value;
+    if (el.name === "fechaTarjeta") {
+      body[el.name] = `${el.value}-01`;
+    } else {
+      body[el.name] = el.value;
+    }
   });
   return body;
 }

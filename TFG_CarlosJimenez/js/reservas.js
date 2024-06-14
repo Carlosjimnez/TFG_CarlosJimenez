@@ -85,7 +85,7 @@ function validarFormulario(event) {
     // 2022-12
     errores += "La fecha de tarjeta es posterior a la fecha actual \n";
   }
-  /^[0-9]{3,4}$/;
+
   if (!/^[0-9]{3,4}$/.test(cvc)) {
     // 2022-12
     errores += "El cvc de la tarjeta no es el correcto \n";
@@ -104,7 +104,6 @@ function validarFormulario(event) {
 }
 
 function validarFechaTarjeta(fecha) {
-  console.log("validarFecha", fecha);
   const hoy = new Date();
   const [ano, mes] = fecha.split("-").map(Number);
   const expiracion = new Date(ano, mes - 1);
@@ -137,13 +136,38 @@ function confirmarReserva() {
   const body = generarBody(values);
   console.log("BODY", body);
   // Mostrar la alerta de reserva enviada correctamente
-  alert("Reserva enviada correctamente!");
+  let msg = "Reserva enviada correctamente!";
+  try {
+    crearReserva(body);
+  } catch (e) {
+    msg = `Eror al crear reserva ${e}`;
+  }
 
+  // alert(msg);
   // Cerrar el modal después de mostrar la alerta
   let modal = bootstrap.Modal.getInstance(
     document.getElementById("confirmacionModal")
   );
   modal.hide();
+}
+
+function crearReserva(datos) {
+  fetch("http://localhost/TFG_Carlos/backend/controllers/reservas.php", {
+    method: "post",
+    body: JSON.stringify({ datos_reserva: datos }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Response JSON:", data);
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+    });
 }
 
 // Función para manejar la cancelación de la reserva
@@ -171,3 +195,6 @@ document
 document
   .getElementById("btnCancelarReserva")
   .addEventListener("click", cancelarReserva);
+document
+  .getElementById("reservaForm")
+  .addEventListener("submit", (ev) => ev.preventDefault());

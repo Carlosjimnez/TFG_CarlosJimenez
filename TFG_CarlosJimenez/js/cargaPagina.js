@@ -11,17 +11,6 @@ const confirmacionModal = new bootstrap.Modal(
   document.getElementById("confirmacionModal")
 );
 
-// Agregar listener para el evento submit del formulario
-/*formulario.addEventListener("submit", function (event) {
-  // Prevenir el envío del formulario
-  event.preventDefault();
-  // Mostrar el spinner
-  spinner.classList.remove("d-none");
-  // Mostrar el modal de confirmación
-  confirmacionModal.show();
-});*/
-
-// Agregar listener para el evento click del botón de confirmar reserva en el modal
 document
   .getElementById("btnConfirmarReserva")
   .addEventListener("click", function () {
@@ -29,7 +18,7 @@ document
     spinner.classList.add("d-none");
     // Ocultar el modal de confirmación
     confirmacionModal.hide();
-    formulario.submit();
+    //formulario.submit();
   });
 
 document

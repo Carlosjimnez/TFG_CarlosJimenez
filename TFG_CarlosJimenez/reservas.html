@@ -82,18 +82,58 @@
           <div class="mb-3">
             <select class="form-control" id="productosDropdown" name="producto">
               <option value="">Seleccionar producto</option>
-              <option value="masaje">Masaje Relajante</option>
-              <option value="circuito">Circuito de Spa</option>
-              <option value="terapia">Terapia de Barro</option>
-              <option value="sauna">Sauna Finlandesa</option>
-              <option value="piscina">Piscina Termal</option>
-              <option value="tratamiento">Tratamiento Facial</option>
-              <option value="aromaterapia">Aromaterapia</option>
-              <option value="talasoterapia">Talasoterapia</option>
-              <option value="hidroterapia">Hidroterapia</option>
-              <option value="instalaciones">Instalaciones del Balneario</option>
-              <option value="muscular">Terapia Muscular</option>
-              <option value="baño">Baño Turcor</option>
+              <option value="1">Masaje Relajante</option>
+              <option value="2">Circuito de Spa</option>
+              <option value="3">Terapia de Barro</option>
+              <option value="4">Sauna Finlandesa</option>
+              <option value="5">Piscina Termal</option>
+              <option value="6">Tratamiento Facial</option>
+              <option value="7">Aromaterapia</option>
+              <option value="8">Talasoterapia</option>
+              <option value="9">Hidroterapia</option>
+              <option value="10">Instalaciones del Balneario</option>
+              <option value="11">Terapia Muscular</option>
+              <option value="12">Baño Turcor</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <select class="form-control" id="ofertasDropdown" name="oferta">
+              <option value="">Seleccionar oferta</option>
+              <option value="1">Oferta Relax Total</option>
+              <option value="2">Oferta Belleza Integra</option>
+              <option value="3">Oferta Terapia Completa</option>
+              <option value="4">Oferta Spa Premium</option>
+              <option value="5">Oferta Rejuvenecimiento</option>
+              <option value="6">Oferta Relax y Salud</option>
+              <option value="7">Oferta Bienestar</option>
+              <option value="8">Oferta Deluxe</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <select
+              class="form-control"
+              id="trabajadoresDropdown"
+              name="trabajador"
+            >
+              <option value="">Seleccionar trabajador</option>
+              <option value="1">Juan Perez</option>
+              <option value="2">Maria Lopez</option>
+              <option value="3">Carlos Gonzalez</option>
+              <option value="4">Ana Martinez</option>
+              <option value="5">Luis Garcia</option>
+              <option value="6">Laura Rodriguez</option>
+              <option value="7">Jorge Hernandez</option>
+              <option value="8">Carmen Sanchez</option>
+              <option value="9">Miguel Ramirez</option>
+              <option value="10">Sara Torres</option>
+              <option value="11">Jose Flores</option>
+              <option value="12">Lucia Jimenez</option>
+              <option value="13">David Ruiz</option>
+              <option value="14">Isabel Diaz</option>
+              <option value="15">Pablo Vazquez</option>
+              <option value="16">Marta Castro</option>
+              <option value="17">Andres Ortega</option>
+              <option value="18">Sofia Molina</option>
             </select>
           </div>
 
@@ -174,6 +214,15 @@
               required
             />
           </div>
+          <div class="mb-3">
+            <input
+              name="detalles"
+              type="text"
+              class="form-control"
+              id="detalles"
+              placeholder="Observaciones que Añadir "
+            />
+          </div>
           <button
             id="submitReserva"
             type="submit"
@@ -188,7 +237,6 @@
             id="spinner"
           ></div>
         </form>
-
         <div class="progress mt-4">
           <div
             class="progress-bar"
