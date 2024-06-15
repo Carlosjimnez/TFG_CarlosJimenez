@@ -12,7 +12,7 @@ document
     ev.preventDefault();
     const values = document.querySelectorAll("#registroForm [name]");
     if (validarDatos(values)) {
-      alert("Todos los datos son válidos");
+      alert("El Registro ha sido realizado con exito");
       const body = generarBody(values);
       altaCliente(body);
       localStorage.setItem("datos_cliente", JSON.stringify(body));
