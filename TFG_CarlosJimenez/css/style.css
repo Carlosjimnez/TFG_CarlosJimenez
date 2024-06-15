@@ -160,7 +160,6 @@ footer {
   height: auto;
 }
 
-/* Sección de historia */
 .history {
   color: #000000;
   padding: 20px;
@@ -174,7 +173,6 @@ footer {
   margin-top: 20px;
 }
 
-/* Sección de servicios */
 .services {
   background-color: #e8eeee;
   color: #000000;
@@ -196,8 +194,6 @@ footer {
   max-width: 100%;
   height: auto;
 }
-
-/* Sección de galería */
 .galeria {
   color: #000000;
   padding: 20px;
@@ -208,19 +204,11 @@ footer {
   max-width: 100%;
   height: auto;
 }
-
-/* Footer */
-footer {
-  padding: 20px;
-  text-align: center;
-}
-
 footer img {
   width: 30px;
   margin: 5px;
 }
 
-/* Media queries para dispositivos medianos */
 @media (min-width: 768px) {
   .intro {
     flex-direction: row;
