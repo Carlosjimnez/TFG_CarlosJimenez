@@ -1,23 +1,9 @@
-window.addEventListener("load", iniciar);
+window.addEventListener("load", sacarMensaje);
 
-async function iniciar() {
-  const json = localStorage.getItem("datos_cliente");
-  if (json) {
-    try {
-      const datos = JSON.parse(json);
-      datosCliente(datos.email, datos.contrasena);
-      cambiarBoton(true);
-    } catch (e) {
-      console.log("Error: ", e);
-    }
-  }
-}
-
-function cambiarBoton() {
-  const buttonInicio = document.getElementById("buttonInicioSesion");
-  const buttonAdmin = document.getElementById("buttonAdminPerfil");
-  buttonInicio.style.display = "none";
-  buttonAdmin.style.display = "block";
+async function sacarMensaje() {
+  const msgError = document.getElementById("mensajeError");
+  const json = JSON.parse(localStorage.getItem("datos_cliente"));
+  msgError.style.display = json ? "block" : "none";
 }
 
 document
@@ -26,18 +12,19 @@ document
     ev.preventDefault();
     const values = document.querySelectorAll("#registroForm [name]");
     if (validarDatos(values)) {
-      // GENERAR EL TRY CATCH
-
       alert("Todos los datos son válidos");
       const body = generarBody(values);
-      // REALIZAMOS PETICION AL SERVICIO
       altaCliente(body);
-      //GUARDAMOS LOS DATOS EN EL localStorage
       localStorage.setItem("datos_cliente", JSON.stringify(body));
-      //GENERAR MODAL CONFIRMACION
-    } else {
     }
   });
+
+document.getElementById("inicioForm").addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  const email = document.getElementById("emailEntrar").value;
+  const contrasena = document.getElementById("contrasenaEntrar").value;
+  datosCliente(email, contrasena);
+});
 
 function datosCliente(email, contrasena) {
   fetch(
@@ -51,7 +38,13 @@ function datosCliente(email, contrasena) {
     })
     .then((data) => {
       console.log("Response JSON:", data);
-      localStorage.setItem("datos_cliente", data.data);
+      if (data.data !== "null") {
+        localStorage.setItem("datos_cliente", data.data);
+        location.href = "index.html";
+      } else {
+        console.log(data.data);
+        location.reload();
+      }
     })
     .catch((error) => {
       console.error("Fetch error:", error);
@@ -71,23 +64,11 @@ function altaCliente(json) {
     })
     .then((data) => {
       console.log("Response JSON:", data);
-      location.reload();
     })
     .catch((error) => {
       console.error("Fetch error:", error);
     });
 }
-
-document.getElementById("inicioForm").addEventListener("submit", (ev) => {
-  ev.preventDefault();
-  console.log("SE QUIERE INICIAR SESION");
-  const values = document.querySelectorAll("#inicioForm [name]");
-  // GENERAR EL TRY CATCH
-  const body = generarBody(values);
-  console.log("ESTE ES EL BODY DEL INCIO", body);
-
-  //GENERAR MODAL CONFIRMACION holagit a
-});
 
 function validarDatos(values) {
   const nombre = document.querySelector('input[name="nombre"]').value.trim();

@@ -36,8 +36,11 @@ function datosCliente($conn, $email, $contrasena) {
     
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        return json_encode($data[0]);
+
+        $response = $data[0] ?? null;
+
+        return json_encode($response);
+
     } catch (PDOException $error) {
         return 'Error: ' . $error->getMessage();
     }

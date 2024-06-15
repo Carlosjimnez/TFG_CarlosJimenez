@@ -20,7 +20,7 @@ header {
 }
 
 #buttonAdminPerfil {
-  display: "none";
+  display: none;
 }
 
 .logo {
@@ -403,7 +403,7 @@ footer {
   padding: 20px;
 }
 
-.container-datos {
+.conta er-datos {
   margin-top: 20px;
 }
 
@@ -427,4 +427,20 @@ footer {
 }
 .modal {
   color: #000000;
+}
+
+#buttonCerrarSesion {
+  background-color: red;
+  display: none;
+}
+
+#ofertasDropdown,
+#trabajadoresDropdown,
+#detalles,
+#mensajeError {
+  display: none;
+}
+#mensajeError {
+  color: #000000;
+  text-align: center;
 }

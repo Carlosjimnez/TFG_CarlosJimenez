@@ -1,12 +1,11 @@
-window.addEventListener("load", () => {
-  //Comprobamos si existe datos en el session storage
-  if (localStorage.getItem("datos_cliente")) {
-    const datos = JSON.parse(localStorage.getItem("datos_cliente"));
-    rellenarFormulario(datos);
-  } else {
-    console.log("No hay datos");
+window.addEventListener("load", rellenarForm);
+
+function rellenarForm() {
+  const json = JSON.parse(localStorage.getItem("datos_cliente"));
+  if (json) {
+    rellenarFormulario(json);
   }
-});
+}
 
 function rellenarFormulario(datos) {
   datos.fecha_tarjeta = datos.fecha_tarjeta.slice(0, 7);

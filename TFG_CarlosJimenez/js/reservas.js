@@ -1,3 +1,35 @@
+window.addEventListener("load", datosCliente);
+
+function datosCliente() {
+  const json = JSON.parse(localStorage.getItem("datos_cliente"));
+  if (json) {
+    rellenarFormulario(json);
+    mostrarOpcionesCliente(true);
+  }
+}
+
+function rellenarFormulario(datos) {
+  datos.fecha_tarjeta = datos.fecha_tarjeta.slice(0, 7);
+  document.querySelector('input[name="nombre"]').value = datos.nombre;
+  document.querySelector('input[name="contacto"]').value = datos.telefono;
+  document.querySelector('input[name="nombreTarjeta"]').value =
+    datos.nombre_tarjeta;
+  document.querySelector('input[name="numTarjeta"]').value =
+    datos.numero_tarjeta;
+  document.querySelector('input[name="fechaTarjeta"]').value =
+    datos.fecha_tarjeta;
+}
+
+function mostrarOpcionesCliente(value) {
+  const campoOferta = document.getElementById("ofertasDropdown");
+  const campoTrabajador = document.getElementById("trabajadoresDropdown");
+  const campoDetalles = document.getElementById("detalles");
+
+  campoOferta.style.display = value ? "block" : "none";
+  campoTrabajador.style.display = value ? "block" : "none";
+  campoDetalles.style.display = value ? "block" : "none";
+}
+
 function actualizarBarraProgreso() {
   let form = document.getElementById("reservaForm");
   let inputs = form.querySelectorAll("input[required]");

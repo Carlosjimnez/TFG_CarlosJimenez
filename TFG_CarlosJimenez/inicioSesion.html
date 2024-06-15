@@ -69,6 +69,13 @@
       >
         Administrar perfil
       </button>
+      <button
+        id="buttonCerrarSesion"
+        class="auth-btn-red"
+        onclick="location.href='perfil.html';"
+      >
+        Cerrar sesion
+      </button>
     </header>
     <main>
       <div class="container">
@@ -77,21 +84,27 @@
             <h2>Iniciar Sesión</h2>
             <span>Use su correo y contraseña</span>
             <div class="container-input">
-              <input type="text" placeholder="Email" name="emailInicio" />
+              <input
+                type="text"
+                placeholder="Email"
+                name="emailInicio"
+                id="emailEntrar"
+              />
             </div>
             <div class="container-input">
               <input
+                id="contrasenaEntrar"
                 type="password"
                 placeholder="Password"
                 name="contrasenaInicio"
               />
             </div>
-            <button class="button">INICIAR SESIÓN</button>
+            <button id="iniciarSesion" class="button">INICIAR SESIÓN</button>
           </form>
         </div>
-        <button onclick="realizarPeticion()" class="button">
-          REALIZAR PETICION
-        </button>
+        <p class="inicioError" id="mensajeError">
+          Usuario o Contraseña Incorrectos
+        </p>
         <div class="container-form">
           <form class="sign-up" id="registroForm">
             <h2>Registrarse</h2>
@@ -197,7 +210,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="./js/actualizarBotonera.js"></script>
 
-    <script src="./js/inicio.js"></script>
+    <script defer src="./js/inicio.js"></script>
   </body>
 </html>

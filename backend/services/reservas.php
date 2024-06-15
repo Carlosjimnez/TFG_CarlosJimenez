@@ -30,4 +30,3 @@ function crearReserva($conn, $datos) {
         return 'Error: ' . $error->getMessage();
     }
 }
-
