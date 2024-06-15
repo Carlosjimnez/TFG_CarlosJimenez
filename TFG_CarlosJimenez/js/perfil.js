@@ -95,15 +95,11 @@ function generarBody(values) {
 }
 
 document.getElementById("eliminarPerfil").addEventListener("click", () => {
-  console.log(
-    'localStorage.getItem("datos")',
-    localStorage.getItem("datos_cliente")
-  );
   const obj = JSON.parse(localStorage.getItem("datos_cliente"));
   //DESTRUCTURING PARA SACAR EL ID_CLIENTE DEL OBJETO
   console.log("DATOS CLIENTE", obj);
   const { id_cliente } = obj;
   console.log("id_cliente", id_cliente);
   borrarCliente(id_cliente);
-  location.href = "./inicioSesion.html";
+  location.href = "./index.html";
 });
