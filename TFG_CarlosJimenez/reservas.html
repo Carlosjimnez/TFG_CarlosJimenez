@@ -20,7 +20,7 @@
     ></script>
     <script defer src="js/actualizarBotonera.js"></script>
     <script defer src="js/reservas.js"></script>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
@@ -89,8 +89,6 @@
       </button>
     </header>
     <main>
-      </div>
-
       <div class="container">
         <h2>Reservas</h2>
         <p>Reserve de manera Rapida y Segura rellenando este formulario</p>
@@ -244,7 +242,6 @@
               class="form-control"
               id="detalles"
               placeholder="Observaciones que Añadir "
-          
             />
           </div>
           <button id="submitReserva" type="submit" class="btn btn-primary">
@@ -257,18 +254,17 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" key="confirm">Confirmar Reserva</h5>
+              <h5 class="modal-title" id="confirm">Confirmar Reserva</h5>
             </div>
             <div class="modal-body">
               ¿Estás seguro de que deseas enviar la reserva?
             </div>
-            <div class="modal-footer" key="confirmFrase">
+            <div class="modal-footer" id="confirmFrase">
               <button
                 type="button"
                 class="btn btn-secondary"
                 id="btnCancelarReserva"
                 data-bs-dismiss="modal"
-                id="confirm2"
               >
                 Cancelar
               </button>
