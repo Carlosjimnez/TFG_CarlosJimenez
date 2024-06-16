@@ -3,7 +3,7 @@ window.addEventListener("load", sacarMensaje);
 async function sacarMensaje() {
   const msgError = document.getElementById("mensajeError");
   const json = JSON.parse(localStorage.getItem("datos_cliente"));
-  msgError.style.display = json ? "block" : "none";
+  msgError.style.display = json ? "none" : "block";
 }
 
 document
@@ -12,10 +12,8 @@ document
     ev.preventDefault();
     const values = document.querySelectorAll("#registroForm [name]");
     if (validarDatos(values)) {
-      alert("El Registro ha sido realizado con exito");
       const body = generarBody(values);
       altaCliente(body);
-      localStorage.setItem("datos_cliente", JSON.stringify(body));
     }
   });
 
@@ -64,9 +62,13 @@ function altaCliente(json) {
     })
     .then((data) => {
       console.log("Response JSON:", data);
+      localStorage.setItem("datos_cliente", JSON.stringify(data.data));
+      alert("El Registro ha sido realizado con exito");
+      location.href = "index.html";
     })
     .catch((error) => {
       console.error("Fetch error:", error);
+      alert("El email ya existe en la base de datos");
     });
 }
 
@@ -105,16 +107,13 @@ function validarDatos(values) {
     errores += "El número de teléfono no está en el formato correcto \n";
   }
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errores += "El email no está en el formato correcto \n";
-  }
-
   if (!/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(contrasena)) {
     errores += "La contraseña no esta en el formato correcto \n ";
   }
 
   if (!/^[A-Za-z]+ [A-Za-z\s]+$/.test(nombreTarjeta)) {
-    errores += "El nombre de la tarjeta no está en el formato correcto \n";
+    errores +=
+      "El nombre de la tarjeta no está en el formato correcto. Ejemplo:(Pepe Perez) \n";
   }
 
   if (!/^\d{16}$/.test(numTarjeta)) {
@@ -122,9 +121,12 @@ function validarDatos(values) {
   }
 
   if (isNaN(fechaTarjeta) && !validarFechaTarjeta(fechaTarjeta)) {
-    // 2022-12
     errores +=
       "La fecha de expiración de la tarjeta no es posterior a la fecha actual \n";
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errores += "El email no está en el formato correcto \n";
   }
 
   if (errores) {
@@ -133,6 +135,26 @@ function validarDatos(values) {
   }
 
   return valido;
+}
+
+function validarEmail(email) {
+  let valido = true;
+  fetch(
+    `http://localhost/TFG_Carlos/backend/controllers/clientes.php?email=${email}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Response JSON:", data);
+      return data.data !== "null";
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+    });
 }
 
 function generarBody(values) {

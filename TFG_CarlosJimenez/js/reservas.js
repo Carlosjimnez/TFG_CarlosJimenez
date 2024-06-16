@@ -30,31 +30,6 @@ function mostrarOpcionesCliente(value) {
   campoDetalles.style.display = value ? "block" : "none";
 }
 
-function actualizarBarraProgreso() {
-  let form = document.getElementById("reservaForm");
-  let inputs = form.querySelectorAll("input[required]");
-  let totalCampos = inputs.length;
-  let camposCompletados = 0;
-
-  inputs.forEach(function (input) {
-    if (input.value !== "") {
-      camposCompletados++;
-    }
-  });
-
-  let progreso = (camposCompletados / totalCampos) * 100;
-  let progressBar = document.querySelector(".progress-bar");
-  progressBar.style.width = progreso + "%";
-  progressBar.setAttribute("aria-valuenow", progreso);
-}
-
-// Actualizar la barra de progreso cada vez que se completa un campo
-let form = document.getElementById("reservaForm");
-let inputs = form.querySelectorAll("input[required]");
-inputs.forEach(function (input) {
-  input.addEventListener("input", actualizarBarraProgreso);
-});
-
 function validarFormulario(event) {
   event.preventDefault();
 
@@ -62,6 +37,8 @@ function validarFormulario(event) {
   const producto = document
     .querySelector('select[name="producto"]')
     .value.trim();
+
+  const oferta = document.querySelector('select[name="oferta"]').value.trim();
 
   const fechaReserva = document
     .querySelector('input[name="fechaReserva"]')
@@ -90,13 +67,13 @@ function validarFormulario(event) {
     errores += "El nombre no está en el formato correcto \n";
   }
 
-  if (!producto) {
-    errores += "Seleccione un producto \n";
+  if (!producto && !oferta) {
+    errores += "Debe seleccionar por lo menos una oferta o un producto\n";
   }
 
   if (isNaN(fechaReserva) && !validarFechaReserva(fechaReserva)) {
     // 2022-12
-    errores += "La fecha de reserva es posterior a la fecha actual \n";
+    errores += "La fecha de reserva debe ser posterior a la fecha actual \n";
   }
   if (isNaN(fechaReserva) && !validarHora(hora)) {
     errores +=
@@ -166,20 +143,23 @@ function validarHora(hora) {
 function confirmarReserva() {
   const values = document.querySelectorAll("form [name]");
   const body = generarBody(values);
-  console.log("BODY", body);
+
   // Mostrar la alerta de reserva enviada correctamente
   let msg = "Reserva enviada correctamente!";
+
   try {
     crearReserva(body);
   } catch (e) {
     msg = `Eror al crear reserva ${e}`;
   }
 
-  // alert(msg);
+  alert(msg);
+
   // Cerrar el modal después de mostrar la alerta
   let modal = bootstrap.Modal.getInstance(
     document.getElementById("confirmacionModal")
   );
+
   modal.hide();
 }
 
@@ -213,10 +193,28 @@ function cancelarReserva() {
 
 // Función para generar el body para la petición del servicio
 function generarBody(values) {
+  console.log("values", values);
+
   const body = {};
+
   values.forEach((el) => {
-    body[el.name] = el.value;
+    if (el.name === "oferta") {
+      body[el.name] = el.value || 9;
+    } else if (el.name === "producto") {
+      body[el.name] = el.value || 13;
+    } else if (el.name === "trabajador") {
+      body[el.name] = el.value || Math.floor(Math.random() * 18) + 1;
+    } else {
+      body[el.name] = el.value || null;
+    }
   });
+
+  const datos = JSON.parse(localStorage.getItem("datos_cliente"));
+
+  if (datos) {
+    body.id_cliente = datos.id_cliente;
+  }
+
   return body;
 }
 

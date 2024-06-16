@@ -5,7 +5,6 @@ header("Content-Type: application/json");
 
 $host = '127.0.0.1';
 $dbname = 'oasis';
-//$dbname = 'balneario_oasis';
 $username = 'root';
 $conn = '';
 

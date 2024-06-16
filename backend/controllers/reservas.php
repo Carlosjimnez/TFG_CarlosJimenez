@@ -9,13 +9,10 @@ $datos_reserva =  $contents['datos_reserva'] ?? null;
 
 $data = '';
 
-var_dump($datos_reserva); 
-
 try{
     if($id_reserva) {
         //$data = borrarReserva()
     } else if($datos_reserva) {
-        echo 'Llamamos al servicio';
         $data = crearReserva($conn, $datos_reserva);
     }
 

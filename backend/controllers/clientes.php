@@ -7,7 +7,6 @@ $email = $_GET['email'] ?? null;
 $contrasena =  $_GET['contrasena'] ?? null;
 $id_cliente =  $_GET['id_cliente'] ?? null;
 
-
 $contents = json_decode(file_get_contents("php://input"), true);
 
 $datos_crear =  $contents['datos_crear'] ?? null;
@@ -25,9 +24,11 @@ try {
     } else if($datos_actualizar) {
         $data = actualizarCliente($conn, $datos_actualizar);
     }
-
     $status = 'succes';  
 
+    if(strstr($data, "Error")) {
+        $status = 'Error';
+    }
 } catch(Exception $e) {
     $data = "Error en la peticion" . $e->getMessage();
     $status = "Error";

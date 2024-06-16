@@ -4,6 +4,8 @@ function rellenarForm() {
   const json = JSON.parse(localStorage.getItem("datos_cliente"));
   if (json) {
     rellenarFormulario(json);
+  } else {
+    vaciarFormulario();
   }
 }
 
@@ -22,6 +24,32 @@ function rellenarFormulario(datos) {
     datos.fecha_tarjeta;
 }
 
+function rellenarFormulario(datos) {
+  datos.fecha_tarjeta = datos.fecha_tarjeta.slice(0, 7);
+  document.querySelector('input[name="nombre"]').value = datos.nombre;
+  document.querySelector('input[name="apellido"]').value = datos.apellido;
+  document.querySelector('input[name="contacto"]').value = datos.telefono;
+  document.querySelector('input[name="email"]').value = datos.email;
+  document.querySelector('input[name="contrasena"]').value = datos.contrasena;
+  document.querySelector('input[name="nombreTarjeta"]').value =
+    datos.nombre_tarjeta;
+  document.querySelector('input[name="numTarjeta"]').value =
+    datos.numero_tarjeta;
+  document.querySelector('input[name="fechaTarjeta"]').value =
+    datos.fecha_tarjeta;
+}
+
+function vaciarFormulario(datos) {
+  document.querySelector('input[name="nombre"]').value = "";
+  document.querySelector('input[name="apellido"]').value = "";
+  document.querySelector('input[name="contacto"]').value = "";
+  document.querySelector('input[name="email"]').value = "";
+  document.querySelector('input[name="contrasena"]').value = "";
+  document.querySelector('input[name="nombreTarjeta"]').value = "";
+  document.querySelector('input[name="numTarjeta"]').value = "";
+  document.querySelector('input[name="fechaTarjeta"]').value = "";
+}
+
 function actualizarCliente(json) {
   fetch("http://localhost/TFG_Carlos/backend/controllers/clientes.php", {
     method: "post",
@@ -35,7 +63,7 @@ function actualizarCliente(json) {
     })
     .then((data) => {
       console.log("Response JSON:", data);
-      //location.reload();
+      location.href = "index.html";
     })
     .catch((error) => {
       console.error("Fetch error:", error);
@@ -55,6 +83,7 @@ function borrarCliente(idCliente) {
     .then((data) => {
       console.log("Response JSON:", data);
       localStorage.removeItem("datos_cliente");
+      location.href = "./index.html";
     })
     .catch((error) => {
       console.error("Fetch error:", error);
@@ -96,10 +125,6 @@ function generarBody(values) {
 
 document.getElementById("eliminarPerfil").addEventListener("click", () => {
   const obj = JSON.parse(localStorage.getItem("datos_cliente"));
-  //DESTRUCTURING PARA SACAR EL ID_CLIENTE DEL OBJETO
-  console.log("DATOS CLIENTE", obj);
   const { id_cliente } = obj;
-  console.log("id_cliente", id_cliente);
   borrarCliente(id_cliente);
-  location.href = "./index.html";
 });

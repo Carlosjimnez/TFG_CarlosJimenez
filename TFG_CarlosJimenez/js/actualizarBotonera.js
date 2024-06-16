@@ -49,5 +49,5 @@ function datosCliente(email, contrasena) {
 
 function cerrarSesion() {
   localStorage.removeItem("datos_cliente");
-  window.reload();
+  location.href = "index.html";
 }

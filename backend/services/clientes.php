@@ -5,8 +5,6 @@ require('./../conexion.php');
 
 // ------- MODELO ----------
 function crearCliente($conn, $datos) {
-    /*$datos['numTarjeta'] = 678567345;
-    $datos['fechaTarjeta'] = '2026-10-11';*/
     try {
         $stmt = $conn->prepare("INSERT INTO clientes VALUES ('',:nombre,:apellido,:numtelef,:email,:contrasena,:nombretar,:numerotar,:fechatar)");
         $stmt->bindParam(':nombre', $datos['nombre']);
@@ -98,6 +96,20 @@ function actualizarCliente($conn, $datos) {
         return json_encode($data);
     } catch (PDOException $error) {
         echo $error->getMessage();
+        return 'Error: ' . $error->getMessage();
+    }
+}
+
+function recuperarEmail($conn, $email) {
+    try {
+        $stmt = $conn->prepare("SELECT email FROM clientes WHERE email = :email");
+        $stmt->bindParam(':fechatar', $email);
+        
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);   
+
+        return json_encode($data);
+    } catch (PDOException $error) {
         return 'Error: ' . $error->getMessage();
     }
 }
