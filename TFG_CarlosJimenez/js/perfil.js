@@ -24,22 +24,7 @@ function rellenarFormulario(datos) {
     datos.fecha_tarjeta;
 }
 
-function rellenarFormulario(datos) {
-  datos.fecha_tarjeta = datos.fecha_tarjeta.slice(0, 7);
-  document.querySelector('input[name="nombre"]').value = datos.nombre;
-  document.querySelector('input[name="apellido"]').value = datos.apellido;
-  document.querySelector('input[name="contacto"]').value = datos.telefono;
-  document.querySelector('input[name="email"]').value = datos.email;
-  document.querySelector('input[name="contrasena"]').value = datos.contrasena;
-  document.querySelector('input[name="nombreTarjeta"]').value =
-    datos.nombre_tarjeta;
-  document.querySelector('input[name="numTarjeta"]').value =
-    datos.numero_tarjeta;
-  document.querySelector('input[name="fechaTarjeta"]').value =
-    datos.fecha_tarjeta;
-}
-
-function vaciarFormulario(datos) {
+function vaciarFormulario() {
   document.querySelector('input[name="nombre"]').value = "";
   document.querySelector('input[name="apellido"]').value = "";
   document.querySelector('input[name="contacto"]').value = "";
@@ -106,22 +91,9 @@ document.getElementById("actualizarPerfil").addEventListener("click", () => {
     localStorage.setItem("datos_cliente", JSON.stringify(body));
     alert("Se han actualizado sus datos");
   } catch (e) {
-    console.log("Error borrando sus datos", e);
+    console.log("Error actualizando sus datos", e);
   }
 });
-
-function generarBody(values) {
-  const body = {};
-
-  values.forEach((el) => {
-    if (el.name === "fechaTarjeta") {
-      body[el.name] = `${el.value}-01`;
-    } else {
-      body[el.name] = el.value;
-    }
-  });
-  return body;
-}
 
 document.getElementById("eliminarPerfil").addEventListener("click", () => {
   const obj = JSON.parse(localStorage.getItem("datos_cliente"));

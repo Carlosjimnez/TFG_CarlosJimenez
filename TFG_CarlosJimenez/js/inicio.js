@@ -39,7 +39,6 @@ function datosCliente(email, contrasena) {
         location.href = "index.html";
       } else {
         console.log(data.data);
-
         sacarMensaje();
       }
     })
@@ -61,9 +60,8 @@ function altaCliente(json) {
     })
     .then((data) => {
       console.log("Response JSON:", data);
-      localStorage.setItem("datos_cliente", JSON.stringify(data.data));
-      alert("El Registro ha sido realizado con exito");
-      location.href = "index.html";
+      alert("El Registro ha sido realizado con exito ya puede Iniciar Sesion");
+      location.href = "inicioSesion.html";
     })
     .catch((error) => {
       console.error("Fetch error:", error);
