@@ -476,7 +476,7 @@ footer img {
   width: calc(100% - 20px);
   padding: 10px;
   margin: 10px 10px 0 10px;
-  background-color: #007bff;
+  background-color: #1484fc;
   color: white;
   border: none;
   border-radius: 5px;
@@ -489,7 +489,7 @@ footer img {
 }
 
 .button:last-child {
-  background-color: #ff0000;
+  background-color: #ffee00;
 }
 
 .button:last-child:hover {
@@ -506,7 +506,7 @@ footer img {
 }
 
 .container h2 {
-  color: #ff5722;
+  color: #427dfa;
 }
 
 .container p {
@@ -568,11 +568,11 @@ footer img {
 
 #ofertasDropdown,
 #trabajadoresDropdown,
-#detalles,
-#mensajeError {
+#detalles {
   display: none;
 }
 #mensajeError {
-  color: #000000;
+  display: none;
+  color: #ff0000;
   text-align: center;
 }

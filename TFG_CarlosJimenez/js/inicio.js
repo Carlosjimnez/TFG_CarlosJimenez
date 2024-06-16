@@ -1,6 +1,4 @@
-window.addEventListener("load", sacarMensaje);
-
-async function sacarMensaje() {
+function sacarMensaje() {
   const msgError = document.getElementById("mensajeError");
   const json = JSON.parse(localStorage.getItem("datos_cliente"));
   msgError.style.display = json ? "none" : "block";
@@ -41,7 +39,7 @@ function datosCliente(email, contrasena) {
         location.href = "index.html";
       } else {
         console.log(data.data);
-        location.reload();
+        sacarMensaje();
       }
     })
     .catch((error) => {
