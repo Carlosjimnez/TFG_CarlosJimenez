@@ -109,21 +109,20 @@ main {
 footer {
   background-color: #efeeee;
   color: #000000;
-  text-align: right;
+  text-align: center;
   padding: 20px;
-  left: 0;
-  width: 100%;
 }
 
 .footer-content {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .footer-content a {
   color: #000000;
   text-decoration: none;
+  margin: 0 10px;
 }
 
 .footer-content a:hover {
@@ -131,12 +130,12 @@ footer {
 }
 
 .footer-content p {
-  margin-right: 20px;
+  margin: 10px;
 }
 
 .footer-content img {
   width: 30px;
-  margin-right: 10px;
+  margin: 5px;
 }
 
 .intro {
@@ -301,6 +300,9 @@ footer img {
 
   footer img {
     width: 25px;
+  }
+  .footer-content {
+    flex-direction: column;
   }
 }
 

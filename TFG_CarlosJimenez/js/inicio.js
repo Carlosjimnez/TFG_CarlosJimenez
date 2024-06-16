@@ -39,6 +39,7 @@ function datosCliente(email, contrasena) {
         location.href = "index.html";
       } else {
         console.log(data.data);
+
         sacarMensaje();
       }
     })
